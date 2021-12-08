@@ -1,0 +1,35 @@
+playlist = {
+    "playlistName": "播放列表 1",
+    "modifiedTime": "2021-06-09T13:41:42",
+    "songInfo_list": []
+}
+
+
+playlist = {
+    "playlistName": "播放列表 1",
+    "modifiedTime": "2021-06-09T13:41:42",
+    "songInfo_list": []
+}
+
+
+
+
+
+songInfo = {
+    "songPath": "D:/KuGou/aiko - うん。.mp3",
+    "singer": "aiko",
+    "songName": "うん。",
+    "album": "湿った夏の始まり",
+    "genre": "POP",
+    "year": "2018年",
+    "trackNumber": "11",
+    "duration": "5:18",
+    "suffix": ".mp3",
+    "coverName": "aiko_湿った夏の始まり",
+    "createTime": "2021-08-11T23:13:34",
+    "modifiedTime": "2021-04-05T18:49:52"
+    md5:
+}
+
+
+

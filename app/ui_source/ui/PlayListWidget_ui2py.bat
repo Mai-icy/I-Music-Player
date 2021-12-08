@@ -1,0 +1,1 @@
+pyuic5 -o PlayListWidget.py PlayListWidget.ui

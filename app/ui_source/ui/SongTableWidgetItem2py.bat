@@ -1,0 +1,1 @@
+pyuic5 -o TableWidgetItem.py TableWidgetItem.ui
