@@ -1,0 +1,1 @@
+pyuic5 -o NewPlaylistDialog.py NewPlaylistDialog.ui

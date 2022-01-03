@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
 import hashlib
 import io
 import json
@@ -6,9 +8,8 @@ import subprocess
 import time
 
 import mutagen
+from mutagen.flac import FLAC
 from tinytag import TinyTag
-
-PIC_SAVE_PATH = r'..\\..\resource\album_pic\%s.jpg'
 
 
 def get_md5(file: str) -> str:
@@ -34,6 +35,8 @@ def get_album_buffer(path: str) -> io.BytesIO:
     :param path: The path of the file.
     :return: resulting image buffer.
     """
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"No such file or directory: '{path}', can't get pic buffer.")
     buffer = io.BytesIO()
     suffix = os.path.splitext(path)[1]
     if suffix == '.mp3':
@@ -63,7 +66,7 @@ def get_album_pic(path: str) -> bool:
     :param path: The path of the file.
     :return: If picture of album exists, return True. Conversely, return False.
     """
-    pic_save_path = PIC_SAVE_PATH
+    pic_save_path = r'..\\..\resource\album_pic\%s.jpg'
     inf = mutagen.File(path)
     artwork = b''
     if not inf.tags:

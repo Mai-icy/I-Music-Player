@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 from components.player.music_stream_queue import MusicStreamQueue
-from components.data_table_widgets.song_table_widget_items import SongTableWidgetItems
+from components.data_table_widgets.table_enter_items import SongTableWidgetItems
 
 
 class SearchTableWidget(QTableWidget):

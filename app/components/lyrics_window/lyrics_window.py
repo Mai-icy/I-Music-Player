@@ -23,6 +23,9 @@ class LyricsWindow(QWidget, Ui_LyricsWindow):
         self._init_font()
         self._init_roll()
 
+        self.set_text(1, "开发阶段", 0)
+        self.set_text(2, "各功能还在陆续更新", 0)
+
     # 字体初始化设置
     def _init_font(self):
         self.font = QtGui.QFont()
@@ -329,7 +332,7 @@ class LyricsWindow(QWidget, Ui_LyricsWindow):
             QMouseEvent.accept()
 
         # 更改字体大小        
-        self.font.setPixelSize((self.height() - 30) / 2 * 4 / 5)
+        self.font.setPixelSize(round((self.height() - 30) / 2 * 4 / 5))
         self.text1_scrollarea.set_font(self.font)
         self.text2_scrollarea.set_font(self.font)
 
@@ -380,7 +383,11 @@ class LyricsWindow(QWidget, Ui_LyricsWindow):
     def update_index(self):
         self.text1_scrollarea.update_index(self.begin_index, self.move_step)
         self.text2_scrollarea.update_index(self.begin_index, self.move_step)
-# endregion
+        
+    def show(self) -> None:
+        self.setGeometry(500, 900, self.width(), self.height())
+        super(LyricsWindow, self).show()
+
 
 
 if __name__ == "__main__":

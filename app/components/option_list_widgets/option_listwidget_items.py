@@ -1,13 +1,13 @@
-# encoding: utf-8
-
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 
 
-class Ui_Form(QWidget):
+class PlaylistItemsWidget(QWidget):
     def __init__(self, text):
-        super(Ui_Form, self).__init__()
+        super(PlaylistItemsWidget, self).__init__()
         self.text = text
         self.setupUi(self)
 
@@ -45,5 +45,26 @@ class Ui_Form(QWidget):
         self.label.setText(_translate("Form", self.text))
 
 
+class PlaylistItemWidget(QWidget):
+    rename_signal = pyqtSignal(str)
+    remove_signal = pyqtSignal(str)
 
+    def __init__(self, item_text: str, parent=None):
+        self.item_text = item_text
+        super(PlaylistItemWidget, self).__init__(parent)
+        self.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.customContextMenuRequested.connect(self._show_context_menu)
 
+    def _show_context_menu(self, pos):
+        menu = QMenu(self)
+        action_rename = menu.addAction('重命名')
+        action_rename.triggered.connect(self.rename_event)
+        action_remove = menu.addAction('删除')
+        action_remove.triggered.connect(self.remove_event)
+        menu.exec_(QCursor.pos())
+
+    def rename_event(self):
+        self.rename_signal.emit(self.item_text)
+
+    def remove_event(self):
+        self.remove_signal.emit(self.item_text)

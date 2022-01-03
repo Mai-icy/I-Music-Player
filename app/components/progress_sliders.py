@@ -1,4 +1,5 @@
-# coding:utf-8
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
 
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
@@ -30,11 +31,18 @@ class ProgressSlider(QSlider):  # 使进度条指哪里点哪里 重写mousePres
         self.m_displayLabel.move(0, 3)'''
 
     def mousePressEvent(self, event):
+        """
+        设置进度条可以单点跳转
+        """
         if event.button() == Qt.LeftButton:
-            super().mousePressEvent(event)  # 调用父级的单击事件，听说这样能不影响进度条原来的拖动
-            val_por = event.pos().x() / self.width()  # 获取鼠标在进度条的相对位置
-            self.setValue(int(val_por * self.maximum()))  # 改变进度条的值
-            self.signal.emit('')  # 点击发送信号，这里可不要
+            super().mousePressEvent(event)
+            val_por = event.pos().x() / self.width()
+            # print(val_por * self.maximum())
+            # print(self.value())
+            if self.value() - 2000 < val_por * self.maximum() < self.value() + 2000:
+                return
+            self.setValue(int(val_por * self.maximum()))
+            self.signal.emit('')
             '''
         if not self.m_displayLabel.isVisible():
             self.m_displayLabel.setVisible(True)

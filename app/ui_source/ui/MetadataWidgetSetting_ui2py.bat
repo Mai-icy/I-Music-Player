@@ -1,0 +1,1 @@
+pyuic5 -o MetadataWidgetSetting.py MetadataWidgetSetting.ui

@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 
 from components.player.music_stream_queue import MusicStreamQueue
-from components.data_table_widgets.song_table_widget_items import SongTableWidgetItems
+from components.data_table_widgets.table_enter_items import SongTableWidgetItems
 
 
 class SongTableWidget(QTableWidget):
@@ -70,7 +70,6 @@ class SongTableWidget(QTableWidget):
     # region 初始化函数
     def _init_mouse_track(self):
         self.setMouseTracking(True)
-        # self.parent().setMouseTracking(True)
         self.is_enter_event = True
 
     def _init_base_config(self):  # 基本表格默认参数设置

@@ -1,10 +1,13 @@
+#!/usr/bin/python
 # -*- coding:utf-8 -*-
 import os
 import json
 import time
+import io
+
+from common.path import PLAYLIST_SAVE_PATH
 from random import shuffle
-from common.song_metadata.read_song_metadata import get_song_metadata
-PLAYLIST_SAVE_PATH = 'resource\\playlist\\'
+from common.song_metadata.read_song_metadata import get_song_metadata, get_album_buffer
 
 
 class MusicStreamQueue(object):
@@ -37,7 +40,10 @@ class MusicStreamQueue(object):
                 f.close()
             if is_random:
                 shuffle(self.playlist["songInfo_list"])
-            self.now_song_info = self.playlist["songInfo_list"][0]
+            if len(self.playlist["songInfo_list"]):
+                self.now_song_info = self.playlist["songInfo_list"][0]
+            else:
+                self.now_song_info = None
             return True
         else:
             return False
@@ -106,6 +112,19 @@ class MusicStreamQueue(object):
         song_info = self.playlist["songInfo_list"].pop(ori_pos)
         self.playlist["songInfo_list"].insert(res_pos, song_info)
         return
+
+    def get_msq_pic(self) -> io.BytesIO:
+        """
+        Gets a picture of the most recent song.
+
+        :return: resulting image buffer.
+        """
+        if len(self.playlist["songInfo_list"]) > 0:
+            song_path = self.playlist["songInfo_list"][0]["songPath"]
+            buffer = get_album_buffer(song_path)
+            return buffer
+        else:
+            return io.BytesIO()
 
 
 if __name__ == '__main__':
