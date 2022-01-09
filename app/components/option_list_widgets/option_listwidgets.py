@@ -178,7 +178,7 @@ class LeftListWidget(QListWidget):
             self.main_widget.stack_scrollarea.takeWidget()
         for row in range(
                 self.__play_list_item_index + 1,
-                self.__tool_box_item_index):
+                self.__tool_box_item_index + 1):
             item = self.item(row)
             if item.text() == item_name:
                 self.__delete_item(row)
